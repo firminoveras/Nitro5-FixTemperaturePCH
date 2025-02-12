@@ -1,0 +1,10 @@
+[Unit]
+Description=Regulate FAN Vel
+
+[Service]
+User=root
+WorkingDirectory=/usr/bin/
+ExecStart=/bin/python /usr/bin/pch_temp.py
+
+[Install]
+WantedBy=multi-user.target
