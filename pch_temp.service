@@ -1,10 +1,13 @@
 [Unit]
-Description=Regulate FAN Vel
+Description=PCH Temp Hammer
+After=multi-user.target
 
 [Service]
+Type=simple
+Restart=always
+RestartSec=2
 User=root
-WorkingDirectory=/usr/bin/
-ExecStart=/bin/python /usr/bin/pch_temp.py
+ExecStart=/usr/local/bin/pch_temp_hammer.sh
 
 [Install]
 WantedBy=multi-user.target
