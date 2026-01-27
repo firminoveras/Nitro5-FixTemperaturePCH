@@ -1,6 +1,6 @@
 # 🌀 Acer Nitro 5 Fan Fix
 
-Este projeto é um script em **Python** que permite regular a velocidade das ventoinhas do **Acer Nitro 5** com base na temperatura, utilizando o [nbfc-linux](https://github.com/nbfc-linux/nbfc-linux).  
+Este projeto é um script em **Shell** que permite regular a velocidade das ventoinhas do **Acer Nitro 5** com base na temperatura, utilizando o [nbfc-linux](https://github.com/nbfc-linux/nbfc-linux).  
 
 O objetivo principal é **reduzir o ruído** das ventoinhas sem comprometer o resfriamento do sistema. Isso é feito ao manipular os registros corretos e escrever valores de temperatura falsos, permitindo um controle mais eficiente da rotação das fans.
 
@@ -24,12 +24,12 @@ A execução do script irá instalar as dependências e mover o script e o servi
 
 Este script utiliza o módulo **ec_probe** do `nbfc-linux` para **ler e escrever** no registro responsável pela temperatura do **PCH** (Platform Controller Hub) do computador.  
 
-Caso o registro de temperatura do **PCH** no seu sistema utilize um endereço diferente, será necessário modificar o arquivo `pch_temp.py`.  
+Caso o registro de temperatura do **PCH** no seu sistema utilize um endereço diferente, será necessário modificar o arquivo `pch_temp_hammer.sh`.  
 
 Dentro desse arquivo, há uma linha específica que realiza a leitura do valor do registro:
 
-```python
-output = int(run_command('sudo ec_probe read 179 | egrep -o "[0-9]+" | head -1'))
+```bash
+/usr/bin/ec_probe write 179 10 > /dev/null 2>&1
 ```
 O número *179* representa o endereço do registro de temperatura do PCH. Se o seu computador utilizar um endereço diferente, será necessário alterá-lo para o valor correto.
 
@@ -38,6 +38,6 @@ Para verificar qual é o registro de temperatura do PCH no seu sistema, execute 
 ```bash
 sudo ec_probe dump
 ```
-Isso exibirá todos os registros disponíveis. Localize aquele que corresponde à temperatura do PCH e substitua o número 179 no arquivo pch_temp.py pelo valor correto.
+Isso exibirá todos os registros disponíveis. Localize aquele que corresponde à temperatura do PCH e substitua o número 179 no arquivo pch_temp_hammer.sh pelo valor correto.
 
 Após realizar a modificação, o script estará configurado corretamente para o seu sistema e reinstale, caso necessário.
